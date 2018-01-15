@@ -5,11 +5,15 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    user_id = @user[:id]
+    puts "User id :" + user_id.to_s
+    @micropost = Micropost.find_by(user_id:user_id)
   end
 
   # GET /users/new
