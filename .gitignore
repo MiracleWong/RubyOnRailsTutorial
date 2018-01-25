@@ -71,4 +71,4 @@ build-iPhoneSimulator/
 
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
->>>>>>> a822f598a106b85dfd43182546ab793fd79b0b30
+*/.idea
