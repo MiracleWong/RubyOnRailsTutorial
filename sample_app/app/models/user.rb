@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    has_many :microposts, dependent: :destroy
     # 创建一个可以访问的属性
     attr_accessor :remember_token
 
