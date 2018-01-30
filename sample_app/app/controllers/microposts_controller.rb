@@ -5,6 +5,8 @@ class MicropostsController < ApplicationController
       flash[:success] = "Micropost created!"
       redirect_to root_url
     else
+      # 新建微博提交失败时数组为空
+      @feed_items = []
       render 'static_pages/home'
     end
   end

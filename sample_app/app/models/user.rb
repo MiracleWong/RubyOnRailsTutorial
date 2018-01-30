@@ -27,7 +27,7 @@ class User < ApplicationRecord
         update_attribute(:remember_digest, User.digest(remember_token))
     end
 
-    # 如果指定的令牌和摘要匹配，返回 true 
+    # 如果指定的令牌和摘要匹配，返回 true
     # remember_token 是局部变量
     def authenticated?(remember_token)
         return false if remember_digest.nil?
@@ -38,5 +38,9 @@ class User < ApplicationRecord
     # 忘记用户
     def forget
         update_attribute(:remember_digest, nil)
+    end
+
+    def feed
+        Micropost.where("user_id = ?", id)
     end
 end
