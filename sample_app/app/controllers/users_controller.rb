@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def index
     # @users = User.all
-    @users = User.paginate(page: params[:page])
+    @users = User.where(activated: FILL_IN).paginate(page: params[:page])
   end
   def new
     @user = User.new
@@ -13,7 +13,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      UserMailer.account_activation(@user).deliver_now
+      @user.send_activation_email
+      # UserMailer.account_activation(@user).deliver_now
       flash[:info] = "Please check your email to activate your account"
       redirect_to root_url
       # log_in(@user)
@@ -39,7 +40,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page])
+    # @microposts = @user.microposts.paginate(page: params[:page])
+    # redirect_to root_url and return unless FILL_IN
   end
 
   def destroy
